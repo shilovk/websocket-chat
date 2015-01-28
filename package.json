@@ -1,5 +1,5 @@
 {
-  "name": "super-chat",
+  "name": "websocket-chat",
   "version": "0.1.0",
   "description": "Simple chat based on WebSocket",
   "author": "ollazarev",
@@ -22,7 +22,7 @@
   "main": "dist/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ollazarev/super-chat.git"
+    "url": "https://github.com/ollazarev/websocket-chat.git"
   },
   "dependencies": {
     "ws": "^0.7.0"

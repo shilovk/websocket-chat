@@ -1,23 +1,26 @@
-# super-chat
-`super-chat` is a simple chat based on WebSocket. It uses [ws: a node.js websocket library][ws]
+# websocket-chat
+`websocket-chat` is a simple Chat Client/Server based on WebSocket. It uses [ws: a node.js websocket library][ws]
 for connecting to websocket on the server.
 
-### Building
+### Installing
 
-Download a project from the repository, and execute the following command in the root directory:
 ```
+git clone https://github.com/ollazarev/websocket-chat
+cd websocket-chat
 npm run build
 ```
 
 ### Starting server
 
-Execute the following command in the root directory:
+Execute the following command in the root project's directory:
+
 ```
 npm run start
 ```
 
 ### Using chat
 
-Start a chat, located in the directory `project-folder/dest/client`, from your browsers.
+1) Edit `dest/client/index.html` and set host (and port) of the server in Javascript `config` variable.
+2) Open `dest/client/index.html` chat window and start talking!
 
 [ws]: http://einaros.github.io/ws/

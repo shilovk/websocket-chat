@@ -1,7 +1,5 @@
 "use strict";
 
-var config = {host: "", port: 8080};
-
 window.onload = function() {
 	document.querySelector('#go').onclick = start;
 	function start() {
