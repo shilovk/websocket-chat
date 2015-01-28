@@ -18,6 +18,6 @@ npm run start
 
 ### Using chat
 
-Start a chat, located in the directory *(project-folder)*`/dest/client`, from your browsers.
+Start a chat, located in the directory `project-folder/dest/client`, from your browsers.
 
 [ws]: http://einaros.github.io/ws/
