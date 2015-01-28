@@ -10,7 +10,7 @@
     }
   ],
   "scripts": {
-    "build": "rm -r dest 2>/dev/null; gulp build",
+    "build": "npm install; rm -r dest 2>/dev/null; gulp build",
     "start": "node dest/server/server.js"
   },
   "keywords": [
