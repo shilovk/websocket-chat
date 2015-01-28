@@ -21,6 +21,7 @@ npm run start
 ### Using chat
 
 1) Edit `dest/client/index.html` and set host (and port) of the server in Javascript `config` variable.
+
 2) Open `dest/client/index.html` chat window and start talking!
 
 [ws]: http://einaros.github.io/ws/
