@@ -20,4 +20,4 @@ npm run start
 
 Start a chat, located in the directory project-folder/dest/client, from your browsers.
 
-[archive]: http://einaros.github.io/ws/
+[ws]: http://einaros.github.io/ws/
