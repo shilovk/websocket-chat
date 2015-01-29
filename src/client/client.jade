@@ -10,7 +10,11 @@ html
         script(src="js/client.js")
     body
         input#go(type="button" value="Go!")
-        #log
+        div
+            #log
+            #status
+        div(style="clear:both")
         #info
-        input#input(type="text" autofocus)
+        textarea#input(type="text" rows="2" autofocus)
+        br
         input#send(type="submit" value="Send")
