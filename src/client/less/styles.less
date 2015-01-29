@@ -11,10 +11,6 @@
 @log-height: 300px;
 @log-padding: 5px;
 
-#log {
-  height: @log-height;
-}
-
 #log, #input {
   width: 40%;
   min-width: 490px;
@@ -30,6 +26,8 @@
 #log {
   float: left;
   border: 1px solid rgb(192, 192, 192);
+  height: @log-height;
+  margin-right: 2%;
 
   .m_name {
       color: rgb(190, 0, 0);
@@ -53,9 +51,9 @@
 #status {
   padding: @log-padding;
   height: @log-height/2;
-  float: right;
+  float: left;
   width: 20%;
-  min-width: 250px;
+  min-width: 220px;
   background-color: rgba(192, 192, 192, 0.4);
   border-radius: 4px;
 }
