@@ -13,7 +13,7 @@ function Clients() {
  * @returns {number} id добавленного клиента
  */
 Clients.prototype.push = function(ws) {
-	this.data[this.lastId] = ws;
+	this.data[this.lastId] = {ws: ws, id: this.lastId, name: 'user' + this.lastId};
 	this.count++;
 	return this.lastId++;
 }
@@ -31,17 +31,41 @@ Clients.prototype.deleteClient = function(client_id) {
 }
 
 /**
- * Отправить сообщение всем клиентам
- * @param {string} message
+ * Отправить сообщение клиенту
+ * @param {string|object} message
  * @param {string} event_name тип сообщения
- * @param {number} client_id
+ * @param {number} client_id id клиента - адресата
+ */
+Clients.prototype.send = function(message, event_name, client_id) {
+    this.data[client_id].ws.send(
+        JSON.stringify({'event': event_name, 'content': message, 'time': (new Date).toLocaleTimeString()})
+    );
+}
+
+/**
+ * Отправить сообщение всем клиентам
+ * @param {string|object} message
+ * @param {string} event_name тип сообщения
+ * @param {number} client_id id клиента - автора сообщения
  */
 Clients.prototype.sendAll = function(message, event_name, client_id) {
-	this.data.forEach(function (ws){
-		ws.send(
-			JSON.stringify({'event': event_name, 'name': 'user' + (client_id + 1), 'text': message, 'time': (new Date).toLocaleTimeString()})
+	this.data.forEach(function (client){
+		client.ws.send(
+			JSON.stringify({'event': event_name, 'name': 'user' + client_id, 'content': message, 'time': (new Date).toLocaleTimeString()})
 		);
 	});
+}
+
+/**
+ * Получить имена клиентов, находящихся в сети
+ * @returns {Array}
+ */
+Clients.prototype.getOnline = function() {
+    var res = [];
+    this.data.forEach(function(client){
+        res.push(client.name);
+    });
+    return res;
 }
 
 module.exports.Clients = Clients;

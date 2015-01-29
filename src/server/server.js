@@ -9,13 +9,14 @@ var WebSocketServer = require('ws').Server,
 	
 wss.on('connection', function (ws) {
 	var client_id = clients.push(ws);
-	clients.sendAll('', 'connected', client_id);	
-	
+	clients.sendAll('', 'connected', client_id);
+    clients.send(clients.getOnline(), 'online', client_id);
+
 	ws.on('message', function (msg) {
 		var json_msg = JSON.parse(msg);
 		switch (json_msg.event) {
 			case "message":
-				clients.sendAll(decodeURI(json_msg.text), 'message', client_id);
+				clients.sendAll(decodeURI(json_msg.content), 'message', client_id);
 				break;
 			case "typing":
 				clients.sendAll('', 'typing', client_id);

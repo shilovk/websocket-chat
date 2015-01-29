@@ -5,7 +5,7 @@ window.onload = function() {
 	function start() {
 		this.style.display = 'none';
 		var websocket = new WebSocket("ws://" + (config.host ? config.host : location.host) + ":" + config.port),
-			client_id,
+			client_name,
 			timeout_id;
 
         /**
@@ -47,8 +47,8 @@ window.onload = function() {
 			var json_msg = JSON.parse(msg.data);
 			switch (json_msg.event) {				
 				case "connected":
-                    if (!client_id) {
-                        client_id = json_msg.name;
+                    if (!client_name) {
+                        client_name = json_msg.name;
                     }
                     else {
                         connected_clients.push(json_msg).render();
@@ -64,7 +64,7 @@ window.onload = function() {
 					break; 
 				}
 				case "typing": {
-					if (client_id === json_msg.name) {
+					if (client_name === json_msg.name) {
 						return;
 					}
 					var h_template = Handlebars.compile("<span>{{name}} набирает...</span>");
@@ -72,10 +72,18 @@ window.onload = function() {
 					timeout_id = timeout_id || setTimeout(function() { document.querySelector('#info').innerHTML = ''; timeout_id = null }, 2000)
 					break;
 				}
+                case "online": {
+                    json_msg.content.forEach(function(_cl_name){
+                        if (client_name !== _cl_name) {
+                            connected_clients.push({name: _cl_name});
+                        }
+                    })
+                    connected_clients.render();
+                }
 			}
             function renderMessage(json_msg) {
                 var h_template = Handlebars.compile(
-                    "<p><span class='m_name'>{{name}}</span> <span class='m_time'>{{time}}</span> <span class='m_event'>{{event}}</span> <span class='m_text'>{{text}}</span></p>"
+                    "<p><span class='m_name'>{{name}}</span> <span class='m_time'>{{time}}</span> <span class='m_event'>{{event}}</span> <span class='m_text'>{{content}}</span></p>"
                 );
                 document.querySelector('#log').innerHTML += h_template(json_msg);
                 document.querySelector('#log').scrollTop = document.querySelector('#log').scrollHeight;
@@ -84,7 +92,7 @@ window.onload = function() {
 
 		document.querySelector('#send').onclick = function() {
 			websocket.send(
-				JSON.stringify({event: "message", text: encodeURI(document.querySelector('#input').value)})
+				JSON.stringify({event: "message", content: encodeURI(document.querySelector('#input').value)})
 			);
 			document.querySelector('#input').value = '';
 		};		
