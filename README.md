@@ -4,10 +4,23 @@ for connecting to websocket on the server.
 
 ### Installing
 
+#### Linux
+
 ```
 git clone https://github.com/ollazarev/websocket-chat
 cd websocket-chat
 npm run build
+```
+
+#### Windows
+
+**NOTE:** `w_preinstall` script will install Gulp.js globally on your system.
+
+```
+git clone https://github.com/ollazarev/websocket-chat
+cd websocket-chat
+npm run w_preinstall
+npm run w_build
 ```
 
 ### Starting server

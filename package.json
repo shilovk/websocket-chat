@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "build": "npm install; rm -r dest 2>/dev/null; gulp build",
-    "start": "node dest/server/server.js"
+    "start": "node dest/server/server.js",
+    "w_preinstall": "npm -g install gulp",
+    "w_build": "npm install; rd /s /q dest 2>nul; gulp build"
   },
   "keywords": [
     "chat",
