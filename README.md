@@ -28,7 +28,7 @@ npm run w_build
 Execute the following command in the root project's directory:
 
 ```
-npm run start
+npm start
 ```
 
 ### Using chat
